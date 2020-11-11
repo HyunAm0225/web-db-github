@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Student_search.html{% endblock %}
+
+{% block content %}
+    <h1>Student Search</h1>
+    <br>
+    <form action="." method="post">
+        {% csrf_token %}
+        {{ form.as_table }}
+        <input type="submit" value="Submit" class="btn btn-primary btn-sm">
+    </form>
+    <br><br>
+    {% if object_list %}
+        {% for student in object_list %}
+        <h3>이름 : {{student.name}} </h3>
+        <br>
+        <h3>학번 : {{student.student_id}} </h3>
+        <br>
+        <h4>학과 : {{student.department}} </h4>
+        <br>
+        <h4>전화번호 : {{student.tel}} </h4>
+        <br>
+        <h4>이메일 : {{student.email}} </h4>
+        {% endfor %}
+    {% elif search_term %}
+    <b><i>Search Word({{ search_term }})Not Found!</i></b>
+    {% endif %}
+{% endblock %}

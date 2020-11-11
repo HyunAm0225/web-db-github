@@ -1,0 +1,22 @@
+{% extends "base.html" %} 
+{% block title %}participant_detail.html{% endblock %} 
+{% block content %}
+<h2 class="mt-5">{{ object.name }}</h2>
+<div class="row">
+  <div class="col-md-9">
+    <a href="{{ object.image.url }}">
+      <img src="{{ object.image.url }}" style="width: 100%" />
+    </a>
+  </div>
+  <ul class="col-md-3 mt-3">
+    <li class="h5">participant Profile</li>
+    <p>(blank)</p>
+    <li class="h5">Date Uploaded</li>
+    <p class="font-italic">{{ object.upload_dt }}</p>
+    <li class="h5">Party Name</li>
+    <p class="font-italic">
+      <a href="{% url 'party:partyname_detail' object.partyname.pk %}"> {{ object.partyname.name }}</a>
+    </p>
+  </ul>
+</div>
+{% endblock %}

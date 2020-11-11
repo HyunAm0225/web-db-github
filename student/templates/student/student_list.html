@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>학생 목록</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">이름</th>
+      <th scope="col">학번</th>
+      <th scope="col">학과</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for student in object_list %}
+    <tr>
+      <th scope="row">{{ forloop.counter }}</th>
+      <td><a href="{% url 'student:detail' student.id %}">{{ student }}</a></td>
+      <td>{{ student.student_id }}</td>
+      <td>{{ student.department }}</td>
+      {% endfor %}
+    </tr>
+  </tbody>
+</table>
+
+
+{% endblock %}

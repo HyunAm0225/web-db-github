@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Student_change_list.html{% endblock %}
+{% block content %}
+<h1>Student Change - {{user}}</h1>
+
+<table class="table table-bordered table-condensed table-striped">
+<thead>
+<tr class="table-primary">
+    <th>학번</th>
+    <th>이름</th> 
+    <th>학과</th>
+    <th>전화번호</th>
+    <th>Email</th>
+    <th>생일</th>
+    <th>생성자</th>
+    <th>Update</th>
+    <th>Delete</th>
+    </tr>
+</thead>
+<tbody>
+    {% for item in object_list %}
+        <tr>
+            <td>{{ item.student_id }}</td>
+            <td>{{ item.name }}</td>
+            <td>{{ item.department }}</td>
+            <td>{{ item.tel }}</td>
+            <td>{{ item.email }}</td>
+            <td>{{ item.birth_dt }}</td>
+            <td>{{ item.owner }}</td>
+            <td><a href="{% url 'student:update' item.id %}">Update</a></td>
+            <td><a href="{% url 'student:delete' item.id %}">Delete</a></td> 
+        </tr>
+    {% endfor %}
+    </tbody> 
+</table>
+
+{% endblock %}

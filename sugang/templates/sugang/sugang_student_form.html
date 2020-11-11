@@ -1,0 +1,43 @@
+{% extends "base.html" %} 
+{% load widget_tweaks %} 
+{% block title %}sugang_student.html{% endblock %} 
+{% block content %}
+<h1>Sugang_student Create/Update - {{user}}</h1>
+<p class="font-italic">This is a creation or update form for your sugang_student.</p>
+{% if form.errors %}
+<div class="alert alert-danger">
+  <div class="font-weight-bold">Wrong! Please correct the error(s) below.</div>
+  {{ form.errors }}
+</div>
+{% endif %} {% if form.is_multipart %}
+<form enctype="multipart/form-data" action="" method="post" class="card pt-3">
+  {% else %}
+  <form action="." method="post" class="card pt-3">
+    {% endif %} {% csrf_token %}
+    <div class="form-group row">
+      {{ form.subject|add_label_class:"col-form-label col-sm-2 ml-3 font-weight-bold" }}
+      <div class="col-sm-2">{{ form.subject|add_class:"form-control" }}</div>
+      <div class="col-sm-2 my-auto">
+        <a href="{% url 'sugang:subject_add' %}" class="btn btn-outline-primary btn-sm"> Add Subject</a>
+      </div>
+    </div>
+    <div class="form-group row">
+      {{ form.image|add_label_class:"col-form-label col-sm-2 ml-3 font-weight-bold" }}
+      <div class="col-sm-5">{{ form.image|add_class:"form-control-file" }}</div>
+    </div>
+    <div class="form-group row">
+      {{ form.student_id|add_label_class:"col-form-label col-sm-2 ml-3 font-weight-bold" }}
+      <div class="col-sm-5">{{ form.student_id|add_class:"form-control"|attr:"autofocus" }}</div>
+    </div>
+    <div class="form-group row">
+      {{ form.name|add_label_class:"col-form-label col-sm-2 ml-3 font-weight-bold" }}
+      <div class="col-sm-8">{{ form.name|add_class:"form-control"|attr:"rows:3" }}</div>
+    </div>
+    <div class="form-group">
+      <div class="offset-sm-2 col-sm-5">
+        <input type="submit" value="Submit" class="btn btn-info" />
+      </div>
+    </div>
+  </form>
+  {% endblock %}
+</form>

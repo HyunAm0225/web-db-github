@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}party_list.html{% endblock %} 
+{% block extra-style %}
+<style>
+    .thumbnail {
+    border: 3px solid #ccc;
+}
+</style>
+{% endblock %}
+{% block content %}
+{% for item in object_list %}
+<div class="mt-5">
+    <a class="h2" href="{% url 'party:partyname_detail' item.id %}">
+    {{ item.name }}</a>&emsp;
+    <br>
+    <div class="font-italic h5">{{ item.description }}</div>
+    <div class="font-italic h5">장소명 : {{ item.place }}</div>
+</div>
+<div>
+    <span class="font-italic h5">행사 날짜 : {{ item.openday|date:"y-m-d" }}</span>
+    <span class="font-italic h5">행사 시간 : {{ item.opendate }}</span>
+</div
+<hr style="margin: 0 0 20px 0;">
+<br>
+<h2>참석자</h2>
+
+<div class="row">
+    {% for data in item.participant_set.all|slice:":5" %}
+    <div class="ml-5">
+      <div class="thumbnail">
+        <a href="{{ data.get_absolute_url }}">
+          <img src="{{ data.image.thumb_url }}" style="width: 100%" />
+        </a>
+        <h5 class="text-center">{{ data.nickname }}</h5>
+      </div>
+    </div>
+    {% endfor %}
+</div>
+{% endfor %} {% endblock %}

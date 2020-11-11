@@ -1,0 +1,21 @@
+{% extends "base.html" %} 
+{% block title %}sugang_student_detail.html{% endblock %} 
+{% block content %}
+<h2 class="mt-5">{{ object.name }}</h2>
+<div class="row">
+  <div class="col-md-9">
+    <a href="{{ object.image.url }}">
+      <img src="{{ object.image.url }}" style="width: 100%" />
+    </a>
+  </div>
+  <ul class="col-md-3 mt-3">
+    <li class="h5">학생 상세 정보</li>
+    <li class="h5">학번</li>
+    <p class="font-italic">{{ object.student_id }}</p>
+    <li class="h5">Subject Name</li>
+    <p class="font-italic">
+      <a href="{% url 'sugang:subject_detail' object.subject.id %}"> {{ object.subject.name }}</a>
+    </p>
+  </ul>
+</div>
+{% endblock %}

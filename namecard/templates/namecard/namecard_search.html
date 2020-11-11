@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}namecard_search.html{% endblock %}
+
+{% block content %}
+    <h1>Namecard Search</h1>
+    <br>
+    <form action="." method="post">
+        {% csrf_token %}
+        {{ form.as_table }}
+        <input type="submit" value="Submit" class="btn btn-primary btn-sm">
+    </form>
+    <br><br>
+    {% if object_list %}
+        {% for namecard in object_list %}
+            <h3>이름 : {{namecard.name}} </h3>
+            <h4>전화번호 : {{namecard.tel}} </h4>
+            <h5>이메일 : {{namecard.email}} </h5>
+            <h5>회사 : {{namecard.company}} </h6>
+            <h5>그룹 : {{namecard.group}}</h6>
+        {% endfor %}
+    {% elif search_term %}
+    <b><i>Search Word({{ search_term }})Not Found!</i></b>
+    {% endif %}
+{% endblock %}

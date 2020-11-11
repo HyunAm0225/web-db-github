@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% block title %}party_form.html{% endblock %} 
+{% block content %}
+<h1>Party-participant Create/Update - {{user}}</h1>
+<p class="font-italic">
+  파티와 파티 참가자들을 등록 및 수정 할 수 있습니다. 
+</p>
+{% if form.errors %}
+<div class="alert alert-danger">
+  <div class="font-weight-bold">Wrong! Please correct the form error(s) below.</div>
+  {{ form.errors }}
+</div>
+{% endif %} {% if formset.errors %}
+<div class="alert alert-warning">
+  <div class="font-weight-bold">Wrong! Please correct the formset error(s) below.</div>
+  {% for formerrors in formset.errors %} {{ formerrors }} {% endfor %}
+</div>
+{% endif %} {% if form.is_multipart or formset.is_multipart %}
+<form enctype="multipart/form-data" action="" method="post">
+  {% else %}
+  <form action="." method="post">{% endif %} {% csrf_token %}
+<h4>create or update partyname contents</h4>
+<fieldset class="card pt-3">
+  <div class="form-group row">
+    {{ form.name|add_label_class:"col-form-label col-sm-3 ml-3 font-weight-bold" }}
+    <div class="col-sm-5">{{ form.name|add_class:"form-control"|attr:"autofocus" }}</div>
+  </div>
+  <div class="form-group row">
+    {{ form.description|add_label_class:"col-form-label col-sm-3 ml-3 font-weight-bold" }}
+    <div class="col-sm-5">{{ form.description|add_class:"form-control" }}</div>
+  </div>
+  <div class="form-group row">
+    {{ form.place|add_label_class:"col-form-label col-sm-3 ml-3 font-weight-bold" }}
+    <div class="col-sm-5">{{ form.place|add_class:"form-control" }}</div>
+  </div>
+  <div class="form-group row">
+    {{ form.openday|add_label_class:"col-form-label col-sm-3 ml-3 font-weight-bold" }}
+    <div class="col-sm-5">{{ form.openday|add_class:"form-control"|attr:"type:date" }}</div>
+  </div>
+  <div class="form-group row">
+    {{ form.opendate|add_label_class:"col-form-label col-sm-3 ml-3 font-weight-bold" }}
+    <div class="col-sm-5">{{ form.opendate|add_class:"form-control"|attr:"type:time" }}</div>
+  </div>
+</fieldset>
+<br />
+<h4>참가자 정보 추가 및 삭제</h4>
+<fieldset class="card pt-3">
+  {{ formset.management_form }}{% for form in formset %} {{ form.id }} {# form.album #}
+  <div class="form-group row">
+    {{ form.image|add_label_class:"col-form-label col-sm-3 ml-3 font-weight-bold" }}
+    <div class="col-sm-5">{{ form.image|add_class:"form-control-file" }}</div>
+  </div>
+  <div class="form-group row">
+    {{ form.nickname|add_label_class:"col-form-label col-sm-3 ml-3 font-weight-bold" }}
+    <div class="col-sm-5">{{ form.nickname|add_class:"form-control" }}</div>
+  </div>
+  <div class="form-group row">
+    {{ form.age|add_label_class:"col-form-label col-sm-3 ml-3 font-weight-bold" }}
+    <div class="col-sm-5">{{ form.age|add_class:"form-control" }}</div>
+  </div>
+    <hr>
+    {% endfor %}
+    </fieldset>
+    <div class="form-group card py-1"> <div class="offset-sm-3 col-sm-5">
+    <input type="submit" value="Submit" class="btn btn-info"/> </div>
+    </div> </form>
+    {% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>{{object.name}}의 상세정보</h1>
+<br>
+<h3>이름 : {{object.name}} </h3>
+<br>
+<h3>학번 : {{object.student_id}} </h3>
+<br>
+<h4>학과 : {{object.department}} </h4>
+<br>
+<h4>전화번호 : {{object.tel}} </h4>
+<br>
+<h4>이메일 : {{object.email}} </h4>
+
+
+{% endblock %}
