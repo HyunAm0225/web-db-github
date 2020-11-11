@@ -1,19 +1,25 @@
 {% extends "base.html" %} 
 {% block title %}participant_detail.html{% endblock %} 
 {% block content %}
-<h2 class="mt-5">{{ object.name }}</h2>
+
 <div class="row">
   <div class="col-md-9">
+    <h2 class="text-center">프로필</h2>
     <a href="{{ object.image.url }}">
       <img src="{{ object.image.url }}" style="width: 100%" />
     </a>
   </div>
   <ul class="col-md-3 mt-3">
-    <li class="h5">participant Profile</li>
-    <p>(blank)</p>
-    <li class="h5">Date Uploaded</li>
-    <p class="font-italic">{{ object.upload_dt }}</p>
-    <li class="h5">Party Name</li>
+
+      <li  class="h5">
+        <h2>이름 : {{ object.nickname }}</h2>
+      </li>
+      <li class="h5">
+        <h3>나이 : {{ object.age }}</h3>
+      </li>
+    <li class="h5">등록 날짜</li>
+    <p class="font-italic">{{ object.join_dt|date:"yy-m-d" }}</p>
+    <li class="h5">파티 이름</li>
     <p class="font-italic">
       <a href="{% url 'party:partyname_detail' object.party.id %}"> {{ object.party.name }}</a> 
     </p>

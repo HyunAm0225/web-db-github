@@ -20,6 +20,8 @@ urlpatterns = [
          views.PartyNameParticipantUV.as_view(), name='partyname_update'),
     path('partyname/<int:pk>/delete/',
          views.PartyNameDelV.as_view(), name='partyname_delete'),
+    path('partyname/search/', views.PartyNameSearchFormView.as_view(),
+         name='partyname_search'),
     path('participant/add/', views.ParticipantCV.as_view(), name='participant_add'),
     path('participant/change/', views.ParticipantChangeLV.as_view(),
          name='participant_change'),
@@ -27,5 +29,7 @@ urlpatterns = [
          views.ParticipantUV.as_view(), name='participant_update'),
     path('participant/<int:pk>/delete/',
          views.ParticipantDelV.as_view(), name='participant_delete'),
+    path('participant/search/', views.ParticipantSearchFormView.as_view(),
+         name='participant_search'),
 
 ]

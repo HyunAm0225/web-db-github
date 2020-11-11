@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}partyname_search.html{% endblock %}
+
+{% block content %}
+    <h1>참가자 Search</h1>
+    <br>
+    <form action="." method="post">
+        {% csrf_token %}
+        {{ form.as_table }}
+        <input type="submit" value="Submit" class="btn btn-primary btn-sm">
+    </form>
+    <br><br>
+    {% if object_list %}
+    {% for participant in object_list %}
+        <h3>파티 이름 : {{participant.party.name}} </h3>
+        <h4>참가자 이름 : {{participant.nickname}} </h4>
+        <h5>나이 : {{participant.age}} </h5>
+        <h6>신청 날짜 : {{participant.join_dt}} </h6>   
+        <img src="{{ participant.image.url }}" style="width: 50%; height:50%" />
+    {% endfor %}
+    {% elif search_term %}
+    <b><i>Search Word({{ search_term }})Not Found!</i></b>
+    {% endif %}
+{% endblock %}

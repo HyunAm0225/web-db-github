@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}partyname_search.html{% endblock %}
+
+{% block content %}
+    <h1>partyname Search</h1>
+    <br>
+    <form action="." method="post">
+        {% csrf_token %}
+        {{ form.as_table }}
+        <input type="submit" value="Submit" class="btn btn-primary btn-sm">
+    </form>
+    <br><br>
+    {% if object_list %}
+        {% for participant in object_list %}
+            <h3>파티 이름 : {{participant.name}} </h3>
+            <h4>장소 : {{participant.place}} </h4>
+            <h5>설명 : {{participant.description}} </h5>
+            <h6>날짜 : {{participant.openday}} </h6>
+            <h6>시간 : {{participant.opendate}}</h6>
+        {% endfor %}
+    {% elif search_term %}
+    <b><i>Search Word({{ search_term }})Not Found!</i></b>
+    {% endif %}
+{% endblock %}
