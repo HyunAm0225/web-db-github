@@ -15,7 +15,7 @@
     <p class="font-italic">{{ object.upload_dt }}</p>
     <li class="h5">Party Name</li>
     <p class="font-italic">
-      <a href="{% url 'party:partyname_detail' object.partyname.pk %}"> {{ object.partyname.name }}</a>
+      <a href="{% url 'party:partyname_detail' object.party.id %}"> {{ object.party.name }}</a> 
     </p>
   </ul>
 </div>
